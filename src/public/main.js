@@ -2,7 +2,7 @@ $(function () {
   var $h1 = $('h1');
   var $latitude = $("input[name='latitude']");
   var $longitude = $("input[name='longitude']");
-  var btnLocation = $("input[name='btnLocation']");
+  var $btnLocation = $("input[name='btnLocation']");
 
   btnLocation.on('click', obtainPosition);
 
@@ -10,7 +10,7 @@ $(function () {
     const geoconfig = {
       enableHighAccuracy: true,
       timeout: '10000',
-      maximunAge: 600000
+      maximunAge: 60000
     };
 
     navigator.geolocation.getCurrentPosition(
@@ -30,7 +30,7 @@ $(function () {
   $('form').on('submit', function (event) {
     event.prevenDefauld();
     var latitude = $.trim($latitude.val());
-    var longitude = $trim($longitude.val());
+    var longitude = $.trim($longitude.val());
 
     $('h1').text('loading...');
 
@@ -43,6 +43,10 @@ $(function () {
       var temperature = data.temperature;
       $h1.html('The temperature in ${data.timezone} is ${temperature}&#176 Fahrenheit; in latitude')
     });
+
+    req.fail(function (){
+      $h1.text('Error!');
+    })
   });
 
 
