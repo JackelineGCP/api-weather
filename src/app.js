@@ -14,13 +14,12 @@ app.use(morgan('dev'));
 //routes
 app.use(require('./routes/index.js'));
 
+//static files
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use((req,res) => {
   res.status(404).render('404 not found')
 });
-
-
-//static files
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.listen(app.get('port'), () => {

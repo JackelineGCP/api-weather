@@ -2,10 +2,11 @@ $(function () {
   var $h1 = $('h1');
   var $latitude = $("input[name='latitude']");
   var $longitude = $("input[name='longitude']");
-  var $btnLocation = $("input[name='btnLocation']");
+  var btnLocation = $("input[name='btnLocation']");
 
   btnLocation.on('click', obtainPosition);
 
+  // función que me permite obtener la posicion de html5
   function obtainPosition() {
     const geoconfig = {
       enableHighAccuracy: true,
@@ -27,8 +28,12 @@ $(function () {
     alert(`Error: ${error.code} ${error.message}`)
   }
 
+
+  // procesando formulario
   $('form').on('submit', function (event) {
-    event.prevenDefauld();
+    event.preventDefauld();
+
+    // limpiando los datos con 'trim'
     var latitude = $.trim($latitude.val());
     var longitude = $.trim($longitude.val());
 
@@ -41,7 +46,7 @@ $(function () {
 
     req.done(function (data) {
       var temperature = data.temperature;
-      $h1.html('The temperature in ${data.timezone} is ${temperature}&#176 Fahrenheit; in latitude')
+      $h1.html(`The temperature in ${data.timezone} is ${temperature}&#176 Fahrenheit; in latitude ${latitude} and longitude ${longitude}`);
     });
 
     req.fail(function (){
