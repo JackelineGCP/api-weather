@@ -1,15 +1,15 @@
 $(function () {
-  var $h1 = $('h1');
-  var $latitude = $("input[name='latitude']");
-  var $longitude = $("input[name='longitude']");
-  var btnLocation = $("input[name='btnLocation']");
+  var $h1 = $("h1");
+  var $latitude = $('input[name="latitude"]');
+  var $longitude = $('input[name="longitude"]');
+  var btnLocation = $('input[name="btnLocation"]');
 
   btnLocation.on('click', obtainPosition);
 
   // función que me permite obtener la posicion de html5
   function obtainPosition() {
     const geoconfig = {
-      enableHighAccuracy: true,
+      enableHighAccuracy: true, // con esto obtenemos la mejor posición posible
       timeout: '10000',
       maximunAge: 60000
     };
@@ -25,15 +25,14 @@ $(function () {
   }
 
   function errores(error) {
-    alert(`Error: ${error.code} ${error.message}`)
+    alert(`Error: ${error.code} ${error.message}`);
   }
-
 
   // procesando formulario
   $('form').on('submit', function (event) {
     event.preventDefauld();
 
-    // limpiando los datos con 'trim'
+    // limpiamos los datos a través del método: 'trim'
     var latitude = $.trim($latitude.val());
     var longitude = $.trim($longitude.val());
 
@@ -46,7 +45,8 @@ $(function () {
 
     req.done(function (data) {
       var temperature = data.temperature;
-      $h1.html(`The temperature in ${data.timezone} is ${temperature}&#176 Fahrenheit; in latitude ${latitude} and longitude ${longitude}`);
+      $h1.html(`The temperature in ${data.timezone} is: ${temperature}&#176 Fahrenheit;
+      in latitude ${latitude} and longitude ${longitude}`);
     });
 
     req.fail(function (){

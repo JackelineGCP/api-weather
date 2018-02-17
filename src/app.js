@@ -18,9 +18,8 @@ app.use(require('./routes/index.js'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req,res) => {
-  res.status(404).render('404 not found')
+  res.status(404).render('404 not found');  //render==end
 });
-
 
 app.listen(app.get('port'), () => {
   console.log('server on port', app.get('port'));

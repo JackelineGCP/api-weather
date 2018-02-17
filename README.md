@@ -26,7 +26,10 @@ morgan
 ```js
 forecastio
 ```
-6. Utilizamos el archivo ```.gitignore```  para evitar subir al repositorio la carpeta de ```node_modules```
+
+### Tecnologias utilizadas
+ * framework Pure.css de Yahoo
+ * HTML 5
 
 #### Nota:
 > Recuerda seguir siempre esta [guía de estilos](https://github.com/Laboratoria/js-style-guide/)
